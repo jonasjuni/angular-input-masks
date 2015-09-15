@@ -1752,6 +1752,17 @@ angular.module('ui.utils.masks.global.percentage', [
 					}
 
 					var valueToFormat = PreFormatters.clearDelimitersAndLeadingZeros(value) || '0';
+
+					if (attrs.uiMaxlength)
+					{
+						var exceeding = valueToFormat.length - attrs.uiMaxlength;
+
+						if (exceeding > 0)
+						{
+							valueToFormat = valueToFormat.slice(0,-1*exceeding);
+						}
+					}
+
 					if(value.length > 1 && value.indexOf('%') === -1) {
 						valueToFormat = valueToFormat.slice(0,valueToFormat.length-1);
 					}
